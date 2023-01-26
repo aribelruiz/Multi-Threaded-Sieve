@@ -13,68 +13,63 @@ import java.text.DecimalFormat;
 
 public class Assignment1 
 {
+    // ====================================== Class Variables ======================================
+
+    // Variables assist in checking the number of threads running and available
+    public static boolean threadParking[] = new boolean[8];
+    private static int openParkingIndex = -1;
+
     // Variables for thread management
     public static int threadsRunning = 0;
     public static boolean executionDone = false; 
 
-    // Creates a Hash Set storing primes and a Hash Set storing composites
-    public static HashSet<Long> primeList = new HashSet<Long>();
-    public static HashSet<Long> compositeList = new HashSet<Long>();
+    // Variable defines upper bound when searching for all prime numbers
+    public static int upperBound = (int)Math.pow(10,8);
 
-    // Variables for sum and prime count
-    public static long primeSum = 0;
-    public static long compSum = 0;
+    // Variables for prime numbers
+    public static HashSet<Long> primeList = new HashSet<Long>();
     public static long numOfPrimes = 0;
 
-    // Creates a boolean array that checks how many threads are running
-    public static boolean threadParking[] = new boolean[8];
+    // Boolean list storing whether each number is composite (number N represented by index N)
+    public static boolean[] isCompositeList = new boolean[upperBound + 1]; 
 
+
+    // ========================================= Functions =========================================
     public static void main(String[] args)
     {
         // Starts timer
         long start = System.nanoTime();
 
-        // Variable alongside FindOpenIndex() assists in checking if new thread can be started
-        int parkingIndex;
-
-        // Initializes prime and composite lists (not including 0 or 1)
-        // for (long i = 2; i <= Math.pow(10,8); i++)
-        for (long i = 2; i <= 50; i++)
-        {
-            primeList.add(i);
-        }
-
-        // Checks if program done (executionDone set to true in thread when upper bound is reached)
+        // Checks for program finish (executionDone set to true in thread when upperBound reached)
         while (!executionDone)
         {
-            // Resets parking index variable
-            parkingIndex = -1;
+            // Resets openParkingIndex variable
+            openParkingIndex = -1;
 
-            // Checks if there is an opening for a new thread
-            if ((parkingIndex = FindOpenIndex()) != -1)
+            // Checks if there is an opening for a new thread (-1 when no threads available)
+            if ((openParkingIndex = FindOpenIndex()) != -1)
             {
-                // Creating new thread at (parkingIndex)
-                MultiThreadThing myThing = new MultiThreadThing(parkingIndex);
+                // Creates new thread at openParkingIndex
+                MultiThreadThing myThing = new MultiThreadThing(openParkingIndex);
                 Thread myThread = new Thread(myThing);
                 myThread.start();
             }
+        }  
+
+        // Adds numbers into prime list that are not in composite list (excluding 0 and 1)
+        for (long i = 2; i <= upperBound; i++)
+        {
+            if (isCompositeList[(int)i] == false)
+            {
+                Assignment1.primeList.add(i);
+            }
         }
 
-        // Prints out information for Primes
-        System.out.println("\nPRIMES: " + primeList);
-        System.out.println("PRIME SUM: " + sum(primeList));
+        // Prints out information for prime numbers
+        System.out.println("\nPRIME SUM: " + sumPrimes(primeList));
         System.out.println("# of PRIMES: " + numOfPrimes);
-        // System.out.println("PRIME SUM: " + primeSum);
-        // System.out.println("# of PRIMES: " + primeList.size());
-
-        
-        // Prints out information for Composites
-        System.out.println("\nCOMPOSITES: " + compositeList);
-        System.out.println("COMP SUM: " + sum(compositeList));
-        // System.out.println("COMP SUM: " + compSum);
-
-
-        // Ends Timer
+      
+        // Ends timer
         long end = System.nanoTime();
 
         // Prints execution time
@@ -83,13 +78,12 @@ public class Assignment1
 
     }
 
-    // Searches for open index to start thread
+    // Function searches for open index to start new thread
     public static int FindOpenIndex()
     {
-        // Checks if index is open to start new thread
         for (int i = 0; i < threadParking.length; i++)
         {
-            // If thread parking has an opening, returns index of opening
+            // If open parking found, closes parking and returns index of opening
             if (threadParking[i] == false)
             {
                 // Found Parking at index i
@@ -97,28 +91,26 @@ public class Assignment1
                 return i;
             }
         }
-        // If there are no openings in thread parking, return -1.
+
+        // Returns -1 if there are no openings in thread parking
         return -1;
     }
 
-    // Calculates the sum of the elements in a hash set
-    public static long sum(HashSet<Long> sumList) 
+    // Function calculates the sum of the elements in a hash set of type 'Long'
+    public static long sumPrimes(HashSet<Long> sumList) 
     {
         long sum = 0;
-
-        // Creates Iterator object.
         Iterator itr = sumList.iterator();
 
-        // Sums all numbers in list and increments number of primes counter
+        // Sums all numbers in list and increments total numofPrimes counter
         while (itr.hasNext()) 
         {
             sum += (long)itr.next();
-            numOfPrimes++;  // remove
+            numOfPrimes++;
         }
 
         return sum;
     }
-
 }
 
 
