@@ -1,24 +1,24 @@
 Execution time of NormalSieve() for 10:
-0.001540082s
+9.59747E-4s
 
 Execution time of NormalSieve() for 100:
-9.23199E-4s
+0.00108569s
 
 Execution time of NormalSieve() for 1000:
-0.001157262s
+0.001039543s
 
 Execution time of NormalSieve() for 10000:
-0.001374974s
+0.001862234s
 
 Execution time of NormalSieve() for 100000:
-0.007392506s
+0.007608804s
 
 Execution time of NormalSieve() for 1000000:
-0.011685029s
+0.010899197s
 
 Execution time of NormalSieve() for 10000000:
-0.055348217s
+0.128641341s
 
 Execution time of NormalSieve() for 100000000:
-0.803185586s
+1.087264156s
 
