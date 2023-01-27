@@ -33,16 +33,16 @@ that has been neither marked prime nor composite. This number is then marked as 
 list of prime numbers and all of its multiples are marked as composite if they have not been marked
 by another thread running.Once a thread is finished executing, the thread becomes responsible for 
 the next integer that has been marked as neither prime nor composite. Once all the multiples of the 
-$$\sqrt{N}$$ have been marked as composite, all composite numbers should be in the process of being 
+$\sqrt{N}$ have been marked as composite, all composite numbers should be in the process of being 
 marked as composite by other threads due to the Sieve of Eratosthenes. Therefore, once the multiples
-of $$\sqrt{N}$$ have been marked, no more threads will be created.
+of $\sqrt{N}$ have been marked, no more threads will be created.
 
 Once all threads finish executing, the boolean list of composite numbers is iterated through for 
 numbers marked as false (prime numbers) to find the top 10 prime numbers, the total number of primes
 found, and the sum of all the primes found.
 
 ## Experimental Evaulation
-*TestApproachAccuracy.java* tests the accuracy of my multi-threaded approach and prints output to
+***TestApproachAccuracy.java*** tests the accuracy of my multi-threaded approach and prints output to
 'threadedAccuracy.txt'. This program prints the execution time, total number of primes, and sum of 
 all primes from 1 to N for values of N ranging from 10^1^ to 10^8^. I then compared these values 
 individually to a table on https://primes.utm.edu/howmany.html that shows the total number of primes
@@ -50,18 +50,18 @@ from 1 to x, where x is values of 10^n^. This proved that my approach was workin
 searched online for a list of prime numbers from 1 to N for different values of N and checked if the
 top 10 prime numbers in my algorithm were correct as well as the sum.
 
-*TestThreadedTimes.java* prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
+***TestThreadedTimes.java*** prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
 and prints the output to 'threadedTimes.txt'. I compared these times to that of 'sieveTimes.txt' to 
 see that for 10^8^, the multi-threaded approach runs faster.
 
-*TestSieveTimes.java* prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
+***TestSieveTimes.java*** prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
 and prints the output to 'threadedTimes.txt'. I compared these times to that of 'sieveTimes.txt'.
 
 I also tested to see if having multiple concurrent threads ran faster than having fewer threads. 
 When I changed the max number of threads in Assignment1.java to less than 8, the program ran slower.
 Therefore, the program runs faster with more threads. 
 
-### Reasoning for Efficiency
+# Reasoning for Efficiency
 The multi-threaded approach is more efficient because doing this approach sequentially will create
 a longer runtime as each prime number's multiples can only be crossed off after all the multiples of
 prime numbers before it have been marked. With large numbers the wait becomes very inefficient, but
