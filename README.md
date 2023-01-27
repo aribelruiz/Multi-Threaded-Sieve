@@ -14,8 +14,9 @@ The following program find all prime numbers (from 1 to 10^8^) using multi-threa
 the Sieve of Eratosthenes algorithm.
 
 The following information from the program is then stored into a file called 'primes.txt':
-<execution time> <total number of primes found> <sum of all primes found>
-<top ten maximum primes, listed in order from lowest to highest>
+
+    <execution time> <total number of primes found> <sum of all primes found>
+    <top ten maximum primes, listed in order from lowest to highest>
 
 ## Summary of Approach
 My approach to finding all prime numbers from 1 to N involves the use of the Sieve of Eratosthenes
