@@ -35,87 +35,87 @@ public class Assignment1
     private static long numOfPrimes = 0;
     private static long primeSum = 0; 
   
-
     // Boolean list storing whether each number is composite (number N represented by index N)
     public static boolean[] isCompositeList = new boolean[upperBound + 1]; 
+    public static boolean[] isPrimeList = new boolean[upperBound + 1]; 
 
     // ========================================= Functions =========================================
     public static void main(String[] args)
     {
-        // Starts timer
-        long start = System.nanoTime();
-   
-        // Checks for program finish (executionDone set to true in thread when upperBound reached)
-        while (!executionDone)
-        {
-            // Resets openParkingIndex variable
-            openParkingIndex = -1;
-
-            // Checks if there is an opening for a new thread (-1 when no threads available)
-            if ((openParkingIndex = FindOpenIndex()) != -1)
-            {
-                // Creates new thread at openParkingIndex
-                MultiThreadThing myThing = new MultiThreadThing(openParkingIndex);
-                Thread myThread = new Thread(myThing);
-                myThread.start();
-            }
-        }  
-
-        // Finds prime numbers (number is prime if not found in composite list (excluding 0 and 1))
-        for (long i = upperBound; i >= 2; i--)
-        {
-            if (isCompositeList[(int)i] == false)
-            {
-                // Assures top 10 primes are added to top10Primes[]
-                if (top10Counter < 10)
-                    top10Primes[top10Counter++] = i;
-
-                // Increments number of primes and adds primes to primeSum
-                numOfPrimes++;
-                primeSum += i;
-            }
-        }
-
-        // Creates primes.txt file to print output
-        try {
-            File outputFile = new File("primes.txt");
+       // Starts timer
+       long start = System.nanoTime();
         
-            if (outputFile.createNewFile())
-                System.out.println("File created: " + outputFile.getName());
-            else
-                System.out.println("File '" + outputFile.getName() + "' already exists.");
+       // Checks for program finish (executionDone set to true in thread when upperBound reached)
+       while (!executionDone)
+       {
+           // Resets openParkingIndex variable
+           openParkingIndex = -1;
 
-        } catch (IOException e) {
-            System.out.println("An error occured.");
-            e.printStackTrace();
-        }
+           // Checks if there is an opening for a new thread (-1 when no threads available)
+           if ((openParkingIndex = FindOpenIndex()) != -1)
+           {
+               // Creates new thread at openParkingIndex
+               MultiThreadThing myThing = new MultiThreadThing(openParkingIndex);
+               Thread myThread = new Thread(myThing);
+               myThread.start();
+           }
+       }  
 
-        // Ends timer
-        long end = System.nanoTime();
+       // Finds prime numbers (number is prime if not found in composite list (excluding 0 and 1))
+       for (long i = upperBound; i >= 2; i--)
+       {
+           if (isCompositeList[(int)i] == false)
+           {
+               // Assures top 10 primes are added to top10Primes[]
+               if (top10Counter < 10)
+                   top10Primes[top10Counter++] = i;
 
-        // Prints execution time
-        NumberFormat formatter = new DecimalFormat("#0.00000");
+               // Increments number of primes and adds primes to primeSum
+               numOfPrimes++;
+               primeSum += i;
+           }
+       }
 
-        // Writes prime number information to prime.txt file
-        try {
-            FileWriter myWriter = new FileWriter("primes.txt");
-            
-            // Printing <execution time (in seconds)> <total number of primes found> <sum of all primes found> to output 
-            myWriter.write(formatter.format((end - start) / 1000000000d) + "s ");
-            
-            myWriter.write(numOfPrimes + " ");
-            myWriter.write(primeSum + " ");
+       // Creates primes.txt file to print output
+       try {
+           File outputFile = new File("primes.txt");
+       
+           if (outputFile.createNewFile())
+               System.out.println("File created: " + outputFile.getName());
+           else
+               System.out.println("File '" + outputFile.getName() + "' already exists.");
 
-            // Printing <top 10 maximum primes, listed in order from lowest to highest> to output 
-            myWriter.write("\n" + printTop10Primes(top10Primes));
-            
-            // Closing file writer
-            myWriter.close();
-            System.out.println("Successfully wrote output to 'primes.txt'.\n");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+       } catch (IOException e) {
+           System.out.println("An error occured.");
+           e.printStackTrace();
+       }
+
+       // Ends timer
+       long end = System.nanoTime();
+
+       // Prints execution time
+       NumberFormat formatter = new DecimalFormat("#0.00000");
+
+       // Writes prime number information to prime.txt file
+       try {
+           FileWriter myWriter = new FileWriter("primes.txt");
+           
+           // Printing <execution time (in seconds)> <total number of primes found> <sum of all primes found> to output 
+           myWriter.write(formatter.format((end - start) / 1000000000d) + "s ");
+           
+           myWriter.write(numOfPrimes + " ");
+           myWriter.write(primeSum + " ");
+
+           // Printing <top 10 maximum primes, listed in order from lowest to highest> to output 
+           myWriter.write("\n" + printTop10Primes(top10Primes));
+           
+           // Closing file writer
+           myWriter.close();
+           System.out.println("Successfully wrote output to 'primes.txt'.\n");
+       } catch (IOException e) {
+           System.out.println("An error occurred.");
+           e.printStackTrace();
+       }
     }
 
     // Function searches for open index to start new thread
