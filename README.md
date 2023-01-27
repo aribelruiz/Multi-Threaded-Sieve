@@ -42,20 +42,23 @@ numbers marked as false (prime numbers) to find the top 10 prime numbers, the to
 found, and the sum of all the primes found.
 
 ## Experimental Evaulation
-***TestApproachAccuracy.java*** tests the accuracy of my multi-threaded approach and prints output to
-'threadedAccuracy.txt'. This program prints the execution time, total number of primes, and sum of 
-all primes from 1 to N for values of N ranging from 10^1^ to 10^8^. I then compared these values 
-individually to a table on https://primes.utm.edu/howmany.html that shows the total number of primes
-from 1 to x, where x is values of 10^n^. This proved that my approach was working correctly. I also 
-searched online for a list of prime numbers from 1 to N for different values of N and checked if the
-top 10 prime numbers in my algorithm were correct as well as the sum.
+***TestApproachAccuracy.java*** 
+    Tests the accuracy of my multi-threaded approach and prints output to
+    'threadedAccuracy.txt'. This program prints the execution time, total number of primes, and sum of 
+    all primes from 1 to N for values of N ranging from 10^1^ to 10^8^. I then compared these values 
+    individually to a table on https://primes.utm.edu/howmany.html that shows the total number of primes
+    from 1 to x, where x is values of 10^n^. This proved that my approach was working correctly. I also 
+    searched online for a list of prime numbers from 1 to N for different values of N and checked if the
+    top 10 prime numbers in my algorithm were correct as well as the sum.
 
-***TestThreadedTimes.java*** prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
-and prints the output to 'threadedTimes.txt'. I compared these times to that of 'sieveTimes.txt' to 
-see that for 10^8^, the multi-threaded approach runs faster.
+***TestThreadedTimes.java*** 
+    Prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
+    and prints the output to 'threadedTimes.txt'. I compared these times to that of 'sieveTimes.txt' to 
+    see that for 10^8^, the multi-threaded approach runs faster.
 
-***TestSieveTimes.java*** prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
-and prints the output to 'threadedTimes.txt'. I compared these times to that of 'sieveTimes.txt'.
+***TestSieveTimes.java*** 
+    Prints all the execution times of Assignment1.java for values 10^1^ to 10^8^
+    and prints the output to 'threadedTimes.txt'. I compared these times to that of 'sieveTimes.txt'.
 
 I also tested to see if having multiple concurrent threads ran faster than having fewer threads. 
 When I changed the max number of threads in Assignment1.java to less than 8, the program ran slower.
