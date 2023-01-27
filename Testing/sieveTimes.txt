@@ -1,0 +1,24 @@
+Execution time of NormalSieve() for 10:
+0.001540082s
+
+Execution time of NormalSieve() for 100:
+9.23199E-4s
+
+Execution time of NormalSieve() for 1000:
+0.001157262s
+
+Execution time of NormalSieve() for 10000:
+0.001374974s
+
+Execution time of NormalSieve() for 100000:
+0.007392506s
+
+Execution time of NormalSieve() for 1000000:
+0.011685029s
+
+Execution time of NormalSieve() for 10000000:
+0.055348217s
+
+Execution time of NormalSieve() for 100000000:
+0.803185586s
+

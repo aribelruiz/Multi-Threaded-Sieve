@@ -1,0 +1,24 @@
+Execution time of FindPrime() for 10:
+0.00411354s
+
+Execution time of FindPrime() for 100:
+0.00311695s
+
+Execution time of FindPrime() for 1000:
+0.005531156s
+
+Execution time of FindPrime() for 10000:
+0.007729952s
+
+Execution time of FindPrime() for 100000:
+0.014974843s
+
+Execution time of FindPrime() for 1000000:
+0.03923066s
+
+Execution time of FindPrime() for 10000000:
+0.106335434s
+
+Execution time of FindPrime() for 100000000:
+0.639576013s
+

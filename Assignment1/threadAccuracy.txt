@@ -1,0 +1,40 @@
+====== Prime Info for All Primes (between 1 and 10) ======
+Execution time: 0.00834s
+Total Number of Primes: 4
+Sum of All Primes: 17
+
+====== Prime Info for All Primes (between 1 and 100) ======
+Execution time: 0.00627s
+Total Number of Primes: 25
+Sum of All Primes: 1060
+
+====== Prime Info for All Primes (between 1 and 1000) ======
+Execution time: 0.00556s
+Total Number of Primes: 168
+Sum of All Primes: 76127
+
+====== Prime Info for All Primes (between 1 and 10000) ======
+Execution time: 0.00760s
+Total Number of Primes: 1229
+Sum of All Primes: 5736396
+
+====== Prime Info for All Primes (between 1 and 100000) ======
+Execution time: 0.01563s
+Total Number of Primes: 9592
+Sum of All Primes: 454396537
+
+====== Prime Info for All Primes (between 1 and 1000000) ======
+Execution time: 0.03354s
+Total Number of Primes: 78498
+Sum of All Primes: 37550402023
+
+====== Prime Info for All Primes (between 1 and 10000000) ======
+Execution time: 0.12030s
+Total Number of Primes: 664579
+Sum of All Primes: 3203324994356
+
+====== Prime Info for All Primes (between 1 and 100000000) ======
+Execution time: 0.70310s
+Total Number of Primes: 5761455
+Sum of All Primes: 279209790387276
+

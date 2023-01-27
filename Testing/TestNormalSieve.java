@@ -16,10 +16,35 @@ import java.text.DecimalFormat;
 
 public class TestNormalSieve {
 
-    public static void main(String args[]) 
+    // ====================================== Class Variables ======================================
+    public static int upperBoundSieve = (int)Math.pow(10,8);
+    public static boolean printTest = false;
+
+    // ========================================= Functions =========================================
+
+    public static void main(String[] args)
     {
-        int upperBoundSieve = (int)Math.pow(10,8);
-        // int upperBoundSieve = 50;
+        int newUpperBound = upperBoundSieve;
+        boolean checkPrintTest = printTest;
+        try {
+            newUpperBound = Integer.parseInt(args[0]);
+        } catch (Exception e) {
+            // System.out.println("DEFAULT: Upper bound = (10^8).");
+        }
+
+        try {
+            checkPrintTest = Boolean.parseBoolean(args[1]);
+        } catch (Exception e) {
+            // System.out.println("DEFAULT: Not displying info on console.");
+        }
+
+       NormalSieve(newUpperBound, checkPrintTest);
+    }
+
+    public static double NormalSieve(int newUpperBoundSieve, boolean checkPrintTest) 
+    {
+        upperBoundSieve = newUpperBoundSieve; 
+        printTest = checkPrintTest;
 
         boolean[] isCompositeListSieve = new boolean[upperBoundSieve + 1]; 
 
@@ -68,9 +93,11 @@ public class TestNormalSieve {
              File outputFile = new File("normalSievePrimes.txt");
          
              if (outputFile.createNewFile())
-                 System.out.println("File created: " + outputFile.getName());
+                if (printTest == false)
+                    System.out.println("File created: " + outputFile.getName());
              else
-                 System.out.println("File '" + outputFile.getName() + "' already exists.");
+                if (printTest == false)
+                    System.out.println("File '" + outputFile.getName() + "' already exists.");
  
          } catch (IOException e) {
              System.out.println("An error occured.");
@@ -85,24 +112,28 @@ public class TestNormalSieve {
  
          // Writes prime number information to prime.txt file
          try {
-             FileWriter myWriter = new FileWriter("normalSievePrimes.txt");
-             
-             // Printing <execution time (in seconds)> <total number of primes found> <sum of all primes found> to output 
-             myWriter.write(formatter.format((end - start) / 1000000000d) + "s ");
-             
-             myWriter.write(numOfPrimes + " ");
-             myWriter.write(primeSum + " ");
- 
-             // Printing <top 10 maximum primes, listed in order from lowest to highest> to output 
-             myWriter.write("\n" + printTop10Primes(top10Primes));
-             
-             // Closing file writer
-             myWriter.close();
-             System.out.println("Successfully wrote output to 'normalSievePrimes.txt'.\n");
+            FileWriter myWriter = new FileWriter("normalSievePrimes.txt");
+            
+            // Printing <execution time (in seconds)> <total number of primes found> <sum of all primes found> to output 
+            myWriter.write(formatter.format((end - start) / 1000000000d) + "s ");
+            
+            myWriter.write(numOfPrimes + " ");
+            myWriter.write(primeSum + " ");
+
+            // Printing <top 10 maximum primes, listed in order from lowest to highest> to output 
+            myWriter.write("\n" + printTop10Primes(top10Primes));
+            
+            // Closing file writer
+            myWriter.close();
+            if (printTest == false)
+                System.out.println("Successfully wrote output to 'normalSievePrimes.txt'.\n");
+                
          } catch (IOException e) {
              System.out.println("An error occurred.");
              e.printStackTrace();
          }
+
+         return ((end - start) / 1000000000d);
     }
 
     // Function returns the top 10 prime numbers as a string (from lowest to highest)
