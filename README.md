@@ -1,5 +1,4 @@
 # Sieve of Eratosthenes using Multi-Threading
-Concepts of Parallel and Distributed Processing - Assignment 1. 
 This is an introductory assignment to multi-threaded programming.
 
 ## How to Run Program
